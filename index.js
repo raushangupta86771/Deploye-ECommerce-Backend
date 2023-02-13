@@ -33,11 +33,12 @@ dotenv.config()
 const URL_MONGO=`mongodb://raushan_8821:${process.env.ATLAS_PASSWORD}@ac-exbzlpz-shard-00-00.adekcgr.mongodb.net:27017,ac-exbzlpz-shard-00-01.adekcgr.mongodb.net:27017,ac-exbzlpz-shard-00-02.adekcgr.mongodb.net:27017/?ssl=true&replicaSet=atlas-ob77pn-shard-0&authSource=admin&retryWrites=true&w=majority`
 
 // const URL_MONGO=`mongodb+srv://raushan_8821:${process.env.ATLAS_PASSWORD}@cluster0.adekcgr.mongodb.net/?retryWrites=true&w=majority&ssl=true`
-
+const port = 3000
 //database connection
 mongoose.connect(URL_MONGO, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT||port, () => {
         console.log("Connected to Mongo successfully......");
+        // console.log("running on port :"+port);
     })
 }).catch((e) => {
     console.log("error in database connection index.js")
